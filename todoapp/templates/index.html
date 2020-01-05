@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TodoApp</title>
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+  <div class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-2 d-flex align-items-center">
+          <span class="logo">
+            TODO.APP
+          </span>
+        </div>
+        <div class="col-8 d-flex justify-content-between">
+          <button type="button" class="header-btn move-btn">
+            &lt;
+          </button>
+          <button type="button" class="header-btn move-btn">
+            &gt;
+          </button>
+        </div>
+        <div class="col-2">
+          <button type="button" class="header-btn create-btn" data-toggle="modal" data-target="#modal-create-task">
+            &#43;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="p-2">
+    <div class="tasks">
+      {% include 'tasks_list.html' %}
+    </div>
+    <span class="empty">
+      Ничего не найдено.
+    </span>
+  </div>
+  {% include 'create_task_modal.html' %}
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+          crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+          crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

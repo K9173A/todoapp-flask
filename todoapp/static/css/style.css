@@ -1,0 +1,74 @@
+body {
+  background-color: #45515d;
+}
+
+.header {
+  background-color: #353f4a;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #ffffff;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  margin: 8px;
+  padding: 8px;
+  border-radius: 8px;
+  background-color: #6592bf;
+  border: 2px solid #46709a;
+  color: #ffffff;
+  font-size: 1.5rem;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.empty {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #6592bf;
+}
+
+.header-btn {
+  cursor: pointer;
+  outline: unset;
+  background-color: transparent;
+  border: unset;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.move-btn {
+  color: #6592bf;
+}
+.move-btn:hover {
+  color: #79abd9;
+}
+.move-btn:focus {
+  color: #8fc5f5;
+  outline: unset;
+}
+
+.create-btn {
+  color: #009c0a;
+  width: 64px;
+}
+.create-btn:hover {
+  color: #00bf0a;
+}
+.create-btn:focus {
+  color: #24f814;
+  outline: unset;
+}

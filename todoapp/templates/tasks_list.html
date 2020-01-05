@@ -1,0 +1,29 @@
+{% for task in tasks %}
+  <div class="task">
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <span>
+            {{ task.id }}
+          </span>
+        </div>
+        <div class="col-8">
+          <span>
+            {{ task.description }}
+          </span>
+        </div>
+        <div class="col-2">
+          <div class="badge badge-primary">
+            {{ task.status }}
+          </div>
+        </div>
+        <div class="col-2">
+          <button data-url="{{ url_for('remove_task', task_id=task.id) }}" type="button"
+                  data-toggle="modal" data-target="#modal-confirm-delete" class="btn btn-danger">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
