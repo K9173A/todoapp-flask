@@ -5,10 +5,12 @@ function toggleTasksVisibility() {
 }
 
 $(function () {
+  let removeItemURL = null;
+
   // Creates task
   $('#save-btn').on('click', function () {
-    let modal = $('#modal-create-task');
-    let form = modal.find('form');
+    const modal = $('#modal-create-task');
+    const form = modal.find('form');
     $.post(
       form.attr('action'),
       form.serialize(),
@@ -24,17 +26,34 @@ $(function () {
     );
   });
 
-  // Shows up modal window
+  // Deletes task
+  $('#delete-btn').on('click', function () {
+    const modal = $('#modal-confirm-delete');
+    $.ajax({
+      url: removeItemURL,
+      type: 'DELETE',
+      success: data => {
+        console.log(data);
+        $('.tasks').html(data.tasks_html);
+        modal.modal('toggle');
+        toggleTasksVisibility();
+      }
+    });
+  });
+
+  // Shows up modal window (bootstrap js) and registers url of item.
+  $('.tasks').on('click', '.delete-btn', function (event) {
+    removeItemURL = event.target.dataset.url;
+  });
+
+  // Shows up modal window for item creation.
   $('.create-btn').on('show.bs.modal', function () {
-    let form = $(this).find('form');
+    const form = $(this).find('form');
     $.get(
       form.attr('action'),
       data => form.html(data.form_html)
-    )
-  })
-
-  // Deletes task
-  $('')
+    );
+  });
 });
 
 toggleTasksVisibility();

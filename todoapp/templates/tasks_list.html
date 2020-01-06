@@ -1,29 +1,22 @@
 {% for task in tasks %}
-  <div class="task">
-    <div class="container">
-      <div class="row">
-        <div class="col-2">
-          <span>
-            {{ task.id }}
-          </span>
-        </div>
-        <div class="col-8">
-          <span>
-            {{ task.description }}
-          </span>
-        </div>
-        <div class="col-2">
-          <div class="badge badge-primary">
-            {{ task.status }}
-          </div>
-        </div>
-        <div class="col-2">
-          <button data-url="{{ url_for('remove_task', task_id=task.id) }}" type="button"
-                  data-toggle="modal" data-target="#modal-confirm-delete" class="btn btn-danger">
-            Delete
-          </button>
-        </div>
+  <div class="task {{ task.priority }}">
+    <div class="d-flex">
+      <div class="task__status badge badge-primary mx-1">
+        {{ task.status }}
       </div>
+      <div class="task__description mx-1">
+        {{ task.description }}
+      </div>
+    </div>
+    <div class="d-flex">
+      <button type="button" data-toggle="modal" data-target="#modal-edit-task"
+              class="btn btn-primary mx-1">
+        Edit
+      </button>
+      <button type="button" data-toggle="modal" data-target="#modal-confirm-delete"
+              data-url="{{ url_for('remove_task', task_id=task.id) }}" class="btn btn-danger delete-btn mx-1">
+        Delete
+      </button>
     </div>
   </div>
 {% endfor %}

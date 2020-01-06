@@ -58,7 +58,6 @@ def create_task():
                     form=form
                 )
             }
-        print(form.errors)
     else:
         data = {
             'form_html': render_template(
