@@ -6,7 +6,7 @@ from wtforms import TextAreaField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 
-class TaskCreateForm(FlaskForm):
+class TaskForm(FlaskForm):
     STATUS_CHOICES = [
         (1, 'TODO'),
         (2, 'In Process'),

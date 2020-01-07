@@ -1,0 +1,19 @@
+{{ form.csrf_token }}
+<div class="form-group">
+  <label for="descriptionField">
+    {{ form.description.label }}
+  </label>
+  {{ form.description(size=256, class="form-control", id="descriptionField") }}
+</div>
+<div class="form-group">
+  <label for="statusField">
+    {{ form.status.label }}
+  </label>
+  {{ form.status(class="form-control", id="statusField") }}
+</div>
+<div class="form-group">
+  <label for="priorityField">
+    {{ form.priority.label }}
+  </label>
+  {{ form.priority(class="form-control", id="priorityField") }}
+</div>

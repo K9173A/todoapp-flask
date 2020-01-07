@@ -5,7 +5,8 @@ function toggleTasksVisibility() {
 }
 
 $(function () {
-  let removeItemURL = null;
+  let taskId = null;
+  const tasks = $('.tasks');
 
   // Creates task
   $('#save-btn').on('click', function () {
@@ -16,7 +17,7 @@ $(function () {
       form.serialize(),
       data => {
         if (data.form_is_valid) {
-          $('.tasks').html(data.tasks_html);
+          tasks.html(data.tasks_html);
           modal.modal('toggle');
           toggleTasksVisibility();
         } else {
@@ -26,15 +27,33 @@ $(function () {
     );
   });
 
+  // Update task
+  $('#update-btn').on('click', function () {
+    const modal = $('#modal-update-task');
+    const form = modal.find('form');
+    $.ajax({
+      url: `${form.attr('action')}?task=${taskId}`,
+      type: 'PUT',
+      success: data => {
+        if (data.form_is_valid) {
+          tasks.html(data.tasks_html);
+          modal.modal('toggle');
+          toggleTasksVisibility();
+        } else {
+          form.html(data.form_html);
+        }
+      }
+    });
+  });
+
   // Deletes task
   $('#delete-btn').on('click', function () {
     const modal = $('#modal-confirm-delete');
     $.ajax({
-      url: removeItemURL,
+      url: `${modal.attr('action')}?task=${taskId}`,
       type: 'DELETE',
       success: data => {
-        console.log(data);
-        $('.tasks').html(data.tasks_html);
+        tasks.html(data.tasks_html);
         modal.modal('toggle');
         toggleTasksVisibility();
       }
@@ -42,17 +61,18 @@ $(function () {
   });
 
   // Shows up modal window (bootstrap js) and registers url of item.
-  $('.tasks').on('click', '.delete-btn', function (event) {
-    removeItemURL = event.target.dataset.url;
+  tasks.on('click', '.btn-open-modal', function (event) {
+    taskId = this.parentNode.dataset.task;
   });
 
-  // Shows up modal window for item creation.
-  $('.create-btn').on('show.bs.modal', function () {
+  // Shows up modal window
+  $(document).on('show.bs.modal', '#modal-create-task', function () {
     const form = $(this).find('form');
-    $.get(
-      form.attr('action'),
-      data => form.html(data.form_html)
-    );
+    $.get(form.attr('action'), data => form.html(data.form_html));
+  });
+  $(document).on('show.bs.modal', '#modal-update-task',function () {
+    const form = $(this).find('form');
+    $.get(`${form.attr('action')}?task=${taskId}`, data => form.html(data.form_html));
   });
 });
 

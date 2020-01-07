@@ -16,7 +16,7 @@ A simple todo app built using Flask and MongoDB.
 sudo apt-get install python3-venv
 python3 -m venv venv
 source venv/bin/activate
-pip install -r development.txt
+pip install -r requirements.txt
 ```
 * Set environment variables for MongoDB:
 ```
