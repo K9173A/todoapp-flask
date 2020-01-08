@@ -34,7 +34,9 @@ $(function () {
     $.ajax({
       url: `${form.attr('action')}?task=${taskId}`,
       type: 'PUT',
+      data: form.serialize(),
       success: data => {
+        console.log(data.form_is_valid);
         if (data.form_is_valid) {
           tasks.html(data.tasks_html);
           modal.modal('toggle');
@@ -50,7 +52,7 @@ $(function () {
   $('#delete-btn').on('click', function () {
     const modal = $('#modal-confirm-delete');
     $.ajax({
-      url: `${modal.attr('action')}?task=${taskId}`,
+      url: `${this.dataset.url}?task=${taskId}`,
       type: 'DELETE',
       success: data => {
         tasks.html(data.tasks_html);

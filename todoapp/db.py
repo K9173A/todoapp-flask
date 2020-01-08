@@ -7,9 +7,15 @@ from .forms import TaskForm
 
 
 def get_choice(choices, choice_key):
-    for k, v in choices:
-        if k == choice_key:
-            return v
+    """
+    Gets choice value by its key.
+    :param choices: list of choices (list of tuples).
+    :param choice_key: chosen item (key).
+    :return: value of chosen item.
+    """
+    for key, value in choices:
+        if key == choice_key:
+            return value
 
 
 def get_task(db, task_id):
@@ -19,7 +25,7 @@ def get_task(db, task_id):
     :param task_id: task id (ObjectId).
     :return: task object.
     """
-    return db.task.find({'_id': ObjectId(task_id)})[0]
+    return db.task.find_one({'_id': ObjectId(task_id)})
 
 
 def list_tasks(db):
@@ -40,16 +46,17 @@ def list_tasks(db):
     return data
 
 
-def update_task(db, form):
+def edit_task(db, task_id, form):
     """
     Updates data of task.
     :param db: database instance.
+    :param task_id: task id (ObjectId).
     :param form: form with data.
     :return: None.
     """
     db.task.replace_one(
         {
-            '_id': ObjectId(form.id.data)
+            '_id': ObjectId(task_id)
         },
         {
             'description': form.description.data,
