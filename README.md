@@ -7,6 +7,7 @@ A simple todo app built using Flask and MongoDB.
 * Flask-WTF (v0.14.2) - separate module for forms creation in Flask.
 * jQuery (v3.3.1) - library which was used for AJAX requests. Linked as CDN.
 * Bootstrap (v4.0.0) - framework which was used for adaptive design. Linked as CDN.
+* Font-awesome (v5.0.7) - popular icon set and toolkit. Linked as CDN.
 
 ## Getting started
 * Install a relatively fresh version of Python. I used Python 3.6.8.
