@@ -99,6 +99,7 @@ def update_task():
             'form_html': render_template(
                 'update_task_form.html', form=TaskForm(
                     id=task['_id'],
+                    title=task['title'],
                     description=task['description'],
                     status=task['status'],
                     priority=task['priority']

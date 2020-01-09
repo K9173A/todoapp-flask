@@ -2,14 +2,19 @@
 
 """
 from flask_wtf import FlaskForm
-from wtforms import TextAreaField, SubmitField, SelectField
+from wtforms import (
+    TextAreaField,
+    SubmitField,
+    SelectField,
+    StringField,
+)
 from wtforms.validators import DataRequired
 
 
 class TaskForm(FlaskForm):
     STATUS_CHOICES = [
         (1, 'TODO'),
-        (2, 'In Process'),
+        (2, 'In Progress'),
         (3, 'Complete'),
     ]
     PRIORITY_CHOICES = [
@@ -20,6 +25,10 @@ class TaskForm(FlaskForm):
         (4, 'top')
     ]
 
+    title = StringField(
+        label='Title',
+        validators=[DataRequired()]
+    )
     description = TextAreaField(
         label='Description',
         validators=[DataRequired()]

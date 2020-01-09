@@ -1,22 +1,32 @@
 {% for task in tasks %}
-  <div class="task {{ task.priority }}">
-    <div class="d-flex">
-      <div class="task__status badge badge-primary mx-1">
-        {{ task.status }}
+  <div class="task my-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 task-header">
+          <span class="task-priority {{ task.priority }}">
+            <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>
+          </span>
+          <a href="#" data-toggle="modal" data-target="#modal-update-task"
+             class="nav-link task-title save-task-id" data-task="{{ task.id }}">
+            {{ task.title }}
+          </a>
+        </div>
+        <div class="col-12 task-body">
+          <div class="task-description">
+            {{ task.description }}
+          </div>
+          <i class="fas fa-ad"></i>
+        </div>
+        <div class="col-12 task-footer">
+          <div class="task-status">
+            {{ task.status }}
+          </div>
+          <button type="button" data-toggle="modal" data-target="#modal-confirm-delete"
+                  class="btn-delete save-task-id" data-task="{{ task.id }}">
+            <i class="fas fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
       </div>
-      <div class="task__description mx-1">
-        {{ task.description }}
-      </div>
-    </div>
-    <div class="d-flex" data-task="{{ task.id }}">
-      <button type="button" data-toggle="modal" data-target="#modal-update-task"
-              class="btn btn-primary btn-open-modal mx-1">
-        Update
-      </button>
-      <button type="button" data-toggle="modal" data-target="#modal-confirm-delete"
-              class="btn btn-danger btn-open-modal mx-1">
-        Delete
-      </button>
     </div>
   </div>
 {% endfor %}

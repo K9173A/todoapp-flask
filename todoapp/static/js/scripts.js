@@ -36,7 +36,6 @@ $(function () {
       type: 'PUT',
       data: form.serialize(),
       success: data => {
-        console.log(data.form_is_valid);
         if (data.form_is_valid) {
           tasks.html(data.tasks_html);
           modal.modal('toggle');
@@ -63,8 +62,8 @@ $(function () {
   });
 
   // Shows up modal window (bootstrap js) and registers url of item.
-  tasks.on('click', '.btn-open-modal', function (event) {
-    taskId = this.parentNode.dataset.task;
+  tasks.on('click', '.save-task-id', function () {
+    taskId = this.dataset.task;
   });
 
   // Shows up modal window

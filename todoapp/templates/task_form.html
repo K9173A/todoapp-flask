@@ -1,4 +1,10 @@
 <div class="form-group">
+  <label for="titleField">
+    {{ form.title.label }}
+  </label>
+  {{ form.title(size=48, class="form-control", id="titleField") }}
+</div>
+<div class="form-group">
   <label for="descriptionField">
     {{ form.description.label }}
   </label>

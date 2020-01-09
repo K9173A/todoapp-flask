@@ -39,6 +39,7 @@ def list_tasks(db):
     for task in tasks:
         data.append({
             'id': task['_id'],
+            'title': task['title'],
             'description': task['description'],
             'status': get_choice(TaskForm.STATUS_CHOICES, task['status']),
             'priority': get_choice(TaskForm.PRIORITY_CHOICES, task['priority']),
@@ -59,6 +60,7 @@ def edit_task(db, task_id, form):
             '_id': ObjectId(task_id)
         },
         {
+            'title': form.title.data,
             'description': form.description.data,
             'status': form.status.data,
             'priority': form.priority.data
@@ -74,6 +76,7 @@ def save_task(db, form):
     :return: None.
     """
     db.task.insert_one({
+        'title': form.title.data,
         'description': form.description.data,
         'status': form.status.data,
         'priority': form.priority.data

@@ -7,9 +7,11 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.25rem;
   font-weight: 300;
-  font-style: italic;
   text-transform: uppercase;
   letter-spacing: 3px;
   color: #ffffff;
@@ -21,24 +23,84 @@ body {
 }
 
 .task {
-  display: flex;
-  justify-content: space-between;
-  margin: 8px;
-  padding: 8px;
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  background-color: #ced7e0;
   box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.25);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
-.task__status {
+.task-header {
   display: flex;
-  align-items: center;
-  font-size: 1.2rem;
+  border-bottom: 1px solid #9fa8b1;
 }
 
-.task__description {
-  color: #353f4a;
-  font-size: 1.5rem;
+.task-body {
+  padding: 16px;
+  border-bottom: 1px solid #9fa8b1;
 }
+
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.task-title {
+  padding: 8px 0 8px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.task-description {
+  color: #353f4a;
+  font-size: 0.9rem;
+  word-wrap: break-word;
+}
+
+.task-priority {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-right: 8px;
+}
+
+.task-status {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #353f4a;
+  color: #6592bf;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.btn-delete {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #9c0b1b;
+  color: white;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btn-delete:hover {
+  background-color: #bf0000;
+}
+.btn-delete:focus {
+  outline: none;
+  background-color: #db0000;
+}
+
 
 .empty {
   display: flex;
@@ -54,19 +116,8 @@ body {
   outline: unset;
   background-color: transparent;
   border: unset;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-}
-
-.move-btn {
-  color: #6592bf;
-}
-.move-btn:hover {
-  color: #79abd9;
-}
-.move-btn:focus {
-  color: #8fc5f5;
-  outline: unset;
 }
 
 .create-btn {
@@ -81,8 +132,8 @@ body {
   outline: unset;
 }
 
-.not-set { background-color: #fff3d0; }
-.low { background-color: #ffda76; }
-.normal { background-color: #ffd544; }
-.high { background-color: #ff9623; }
-.top { background-color: #ff4500; }
+.not-set { color: #353f4a; }
+.low { color: #53a3f4; }
+.normal { color: #ffd544; }
+.high { color: #ff9623; }
+.top { color: #db0000; }
