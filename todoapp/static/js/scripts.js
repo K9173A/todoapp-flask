@@ -7,6 +7,7 @@ function toggleTasksVisibility() {
 $(function () {
   let taskId = null;
   const tasks = $('.tasks');
+  const pagination = $('.pagination-wrapper');
 
   // Creates task
   $('#save-btn').on('click', function () {
@@ -17,6 +18,7 @@ $(function () {
       form.serialize(),
       data => {
         if (data.form_is_valid) {
+          pagination.html(data.pagination_html);
           tasks.html(data.tasks_html);
           modal.modal('toggle');
           toggleTasksVisibility();
@@ -27,7 +29,7 @@ $(function () {
     );
   });
 
-  // Update task
+  // Updates task
   $('#update-btn').on('click', function () {
     const modal = $('#modal-update-task');
     const form = modal.find('form');
@@ -37,6 +39,7 @@ $(function () {
       data: form.serialize(),
       success: data => {
         if (data.form_is_valid) {
+          pagination.html(data.pagination_html);
           tasks.html(data.tasks_html);
           modal.modal('toggle');
           toggleTasksVisibility();
@@ -54,6 +57,7 @@ $(function () {
       url: `${this.dataset.url}?task=${taskId}`,
       type: 'DELETE',
       success: data => {
+        pagination.html(data.pagination_html);
         tasks.html(data.tasks_html);
         modal.modal('toggle');
         toggleTasksVisibility();

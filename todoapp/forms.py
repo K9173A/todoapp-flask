@@ -8,14 +8,17 @@ from wtforms import (
     SelectField,
     StringField,
 )
-from wtforms.validators import DataRequired
+from wtforms.validators import (
+    DataRequired,
+    Length
+)
 
 
 class TaskForm(FlaskForm):
     STATUS_CHOICES = [
-        (1, 'TODO'),
-        (2, 'In Progress'),
-        (3, 'Complete'),
+        (1, 'todo'),
+        (2, 'in-progress'),
+        (3, 'complete'),
     ]
     PRIORITY_CHOICES = [
         (0, 'not-set'),
@@ -27,11 +30,13 @@ class TaskForm(FlaskForm):
 
     title = StringField(
         label='Title',
-        validators=[DataRequired()]
+        validators=[
+            DataRequired(),
+            Length(min=3, max=64)
+        ]
     )
     description = TextAreaField(
-        label='Description',
-        validators=[DataRequired()]
+        label='Description'
     )
     status = SelectField(
         label='Status',

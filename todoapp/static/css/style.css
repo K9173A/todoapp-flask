@@ -72,8 +72,6 @@ body {
   flex-direction: column;
   padding: 4px 8px;
   border-radius: 4px;
-  background-color: #353f4a;
-  color: #6592bf;
   font-size: 0.75rem;
   text-transform: uppercase;
   font-weight: 700;
@@ -132,8 +130,28 @@ body {
   outline: unset;
 }
 
-.not-set { color: #353f4a; }
-.low { color: #53a3f4; }
-.normal { color: #ffd544; }
-.high { color: #ff9623; }
-.top { color: #db0000; }
+.priority-not-set { color: #353f4a; }
+.priority-low { color: #53a3f4; }
+.priority-normal { color: #ffd544; }
+.priority-high { color: #ff9623; }
+.priority-top { color: #db0000; }
+
+
+.status-todo {
+  background-color: #461f6f;
+  color: #f100ff;
+}
+.status-in-progress {
+  background-color: #006eb4;
+  color: #b3ffff;
+}
+.status-complete {
+  background-color: #009c0a;
+  color: #24f814;
+}
+
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}

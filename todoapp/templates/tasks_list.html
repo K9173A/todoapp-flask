@@ -1,9 +1,9 @@
 {% for task in tasks %}
-  <div class="task my-3">
+  <div class="task mb-2">
     <div class="container">
       <div class="row">
         <div class="col-12 task-header">
-          <span class="task-priority {{ task.priority }}">
+          <span class="task-priority priority-{{ task.priority }}">
             <i class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>
           </span>
           <a href="#" data-toggle="modal" data-target="#modal-update-task"
@@ -18,7 +18,7 @@
           <i class="fas fa-ad"></i>
         </div>
         <div class="col-12 task-footer">
-          <div class="task-status">
+          <div class="task-status status-{{ task.status }}">
             {{ task.status }}
           </div>
           <button type="button" data-toggle="modal" data-target="#modal-confirm-delete"

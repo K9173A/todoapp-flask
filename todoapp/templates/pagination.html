@@ -1,0 +1,52 @@
+{% if tasks %}
+<nav class="my-2">
+  <ul class="pagination">
+    {% if pagination.prev_numbers %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('index', page=pagination.prev_numbers|last) }}" tabindex="-1">
+          Previous
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">
+          Previous
+        </span>
+      </li>
+    {% endif %}
+    {% for prev_number in pagination.prev_numbers %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('index', page=prev_number) }}">
+          {{ prev_number }}
+        </a>
+      </li>
+    {% endfor %}
+    <li class="page-item active">
+      <span class="page-link">
+        {{ pagination.curr_number }}
+        <span class="sr-only">(current)</span>
+      </span>
+    </li>
+    {% for next_number in pagination.next_numbers %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('index', page=next_number) }}">
+          {{ next_number }}
+        </a>
+      </li>
+    {% endfor %}
+    {% if pagination.next_numbers %}
+      <li class="page-item">
+        <a class="page-link" href="{{ url_for('index', page=pagination.next_numbers.0) }}">
+          Next
+        </a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <span class="page-link">
+          Next
+        </span>
+      </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
