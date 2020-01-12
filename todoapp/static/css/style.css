@@ -3,6 +3,7 @@ body {
 }
 
 .header {
+  padding: 8px;
   background-color: #353f4a;
 }
 
@@ -77,29 +78,6 @@ body {
   font-weight: 700;
 }
 
-.btn-delete {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-  background-color: #9c0b1b;
-  color: white;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-.btn-delete:hover {
-  background-color: #bf0000;
-}
-.btn-delete:focus {
-  outline: none;
-  background-color: #db0000;
-}
-
-
 .empty {
   display: flex;
   justify-content: center;
@@ -109,25 +87,41 @@ body {
   color: #6592bf;
 }
 
-.header-btn {
+.todo-btn {
   cursor: pointer;
-  outline: unset;
-  background-color: transparent;
-  border: unset;
-  font-size: 2rem;
-  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
 }
 
-.create-btn {
+.btn-create {
+  background-color: #45515d;
   color: #009c0a;
-  width: 64px;
+  transition: all 0.4s;
 }
-.create-btn:hover {
+.btn-create:hover {
+  background-color: #637583;
   color: #00bf0a;
 }
-.create-btn:focus {
+.btn-create:focus {
+  background-color: #7a8e9c;
   color: #24f814;
   outline: unset;
+}
+
+.btn-delete {
+  background-color: #9c0b1b;
+  color: white;
+}
+.btn-delete:hover {
+  background-color: #bf0000;
+}
+.btn-delete:focus {
+  outline: none;
+  background-color: #db0000;
 }
 
 .priority-not-set { color: #353f4a; }
@@ -150,8 +144,11 @@ body {
   color: #24f814;
 }
 
-
 .pagination-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.pagination {
+  margin-bottom: 0;
 }
