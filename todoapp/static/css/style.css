@@ -78,6 +78,19 @@ body {
   font-weight: 700;
 }
 
+.task-date {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #45515d;
+  color: #ced7e0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 .empty {
   display: flex;
   justify-content: center;

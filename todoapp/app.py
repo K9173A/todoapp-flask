@@ -2,6 +2,7 @@
 Module which defines application routes.
 """
 import os
+import datetime
 
 from flask import (
     Flask,
@@ -37,6 +38,7 @@ def prepare_tasks(tasks):
             'id': task['_id'],
             'title': task['title'],
             'description': task['description'],
+            'date_added': datetime.datetime.fromtimestamp(task['date_added']).strftime('%H:%M:%S %d-%m-%Y'),
             'status': get_choice(TaskForm.STATUS_CHOICES, task['status']),
             'priority': get_choice(TaskForm.PRIORITY_CHOICES, task['priority']),
         })
@@ -74,19 +76,18 @@ def get_choice(choices, choice_key):
 def root():
     """
     Redirect to the index page.
-    :return:
+    :return: redirects to index.
     """
     return redirect('/p/1')
 
 
-@app.route('/p/<page>')
+@app.route('/p/<int:page>')
 def index(page):
     """
     Renders index page with initial list of tasks.
     :return: rendered index page.
     """
-    paginator.current_page = int(page)
-
+    paginator.current_page = page
     return render_template(
         'index.html',
         tasks=get_tasks(),

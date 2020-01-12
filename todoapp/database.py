@@ -1,6 +1,8 @@
 """
 Module which implements database-related actions.
 """
+import datetime
+
 from bson.objectid import ObjectId
 
 
@@ -60,7 +62,8 @@ def edit_task(task_id, form):
             'title': form.title.data,
             'description': form.description.data,
             'status': form.status.data,
-            'priority': form.priority.data
+            'priority': form.priority.data,
+            'date_added': datetime.datetime.now().timestamp()
         }
     )
 
@@ -75,7 +78,8 @@ def save_task(form):
         'title': form.title.data,
         'description': form.description.data,
         'status': form.status.data,
-        'priority': form.priority.data
+        'priority': form.priority.data,
+        'date_added': datetime.datetime.now().timestamp()
     })
 
 

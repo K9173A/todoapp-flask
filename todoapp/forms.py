@@ -1,5 +1,5 @@
 """
-
+Module which defines forms
 """
 from flask_wtf import FlaskForm
 from wtforms import (
@@ -7,6 +7,7 @@ from wtforms import (
     SubmitField,
     SelectField,
     StringField,
+    FloatField,
 )
 from wtforms.validators import (
     DataRequired,
@@ -32,8 +33,11 @@ class TaskForm(FlaskForm):
         label='Title',
         validators=[
             DataRequired(),
-            Length(min=3, max=64)
+            Length(min=3, max=48)
         ]
+    )
+    date_added = FloatField(
+        label='Added',
     )
     description = TextAreaField(
         label='Description'

@@ -18,8 +18,13 @@
           <i class="fas fa-ad"></i>
         </div>
         <div class="col-12 task-footer">
-          <div class="task-status status-{{ task.status }}">
-            {{ task.status }}
+          <div class="d-flex">
+            <div class="task-date mr-2">
+              {{ task.date_added }}
+            </div>
+            <div class="task-status status-{{ task.status }}">
+              {{ task.status }}
+            </div>
           </div>
           <button type="button" data-toggle="modal" data-target="#modal-confirm-delete"
                   class="todo-btn btn-delete save-task-id" data-task="{{ task.id }}">
