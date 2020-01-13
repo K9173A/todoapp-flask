@@ -1,0 +1,62 @@
+<div class="header">
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <div class="logo">
+        TODO.APP
+      </div>
+      <div class="d-flex">
+        <button type="button" class="todo-btn btn-filter mr-2" role="button"
+                data-toggle="collapse" data-target="#filterBox" aria-controls="filterBox">
+          <i class="fas fa-cogs"></i>
+        </button>
+        <button type="button" class="todo-btn btn-create" data-toggle="modal" data-target="#modal-create-task">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="filter-box mt-2 collapse" id="filterBox">
+      <form action="/" id="filter-form">
+        <div class="filters">
+          <fieldset class="sort-filter">
+            <legend class="filter-box-title">
+              Sort by:
+            </legend>
+            <div>
+              <input type="radio" name="sort" value="Newest" id="newest">
+              <label for="newest">Newest</label>
+            </div>
+            <div>
+              <input type="radio" name="sort" value="Oldest" id="oldest">
+              <label for="newest">Oldest</label>
+            </div>
+            <div>
+              <input type="radio" name="sort" value="HighestStatus" id="highest-status">
+              <label for="highest-status">Highest status</label>
+            </div>
+            <div>
+              <input type="radio" name="sort" value="LowestStatus" id="lowest-status">
+              <label for="lowest-status">Lowest status</label>
+            </div>
+            <div>
+              <input type="radio" name="sort" value="HighestPriority" id="highest-priority">
+              <label for="highest-priority">Highest priority</label>
+            </div>
+            <div>
+              <input type="radio" name="sort" value="LowestPriority" id="lowest-priority">
+              <label for="lowest-priority">Lowest priority</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="d-flex justify-content-between p-2">
+          <button class="filter-box-btn" id="filter-btn">
+            Apply filter
+          </button>
+          <button class="filter-box-btn" role="button"
+                  data-toggle="collapse" data-target="#filterBox" aria-controls="filterBox">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

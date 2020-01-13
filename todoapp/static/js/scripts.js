@@ -79,6 +79,15 @@ $(function () {
     const form = $(this).find('form');
     $.get(`${form.attr('action')}?task=${taskId}`, data => form.html(data.form_html));
   });
+
+  // Applies filters
+  $('#filter-btn').on('click', function () {
+    const form = $('#filter-form');
+    const sortFilterValue = form.find('.filter-sort input:radio').val();
+    $.ajax({
+      url: `${form.attr('action')}?sort=${sortFilterValue}`
+    })
+  })
 });
 
 toggleTasksVisibility();

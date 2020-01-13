@@ -8,14 +8,14 @@ from flask import (
     Flask,
     render_template,
     request,
-    jsonify,
-    redirect,
+    jsonify
 )
 from flask_pymongo import PyMongo
 
+
 from . import database
 from .forms import TaskForm
-from .pagination import Paginator
+from .url_handler import URLHandler
 
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ app.secret_key = b'\x04\x8dMM\x1b\x01h[-\xd25.$\xe7\x99\x0f'
 app.config['MONGO_URI'] = f'mongodb://{os.environ["MONGODB_HOSTNAME"]}/{os.environ["MONGODB_DATABASE"]}'
 database.db = PyMongo(app).db
 
-paginator = Paginator()
+url_handler = URLHandler()
 
 
 def prepare_tasks(tasks):
@@ -45,17 +45,23 @@ def prepare_tasks(tasks):
     return data
 
 
-def get_tasks():
+def get_tasks(sorting_condition, **filters):
     """
     Gets tasks with applied offset and limit, and set paginator values.
+    :param sorting_condition: sorting criteria.
+    :param filters: filter documents in a way: { 'attr1': '42', ... }
     :return: tasks list.
     """
-    tasks = database.get_tasks()
+    if filters:
+        tasks = database.get_tasks(**filters)
+    else:
+        tasks = database.get_tasks()
 
-    paginator.total_items = tasks.count()
+    url_handler.total = tasks.count()
 
-    tasks = database.apply_offset(tasks, paginator.offset)
-    tasks = database.apply_limit(tasks, paginator.items_per_page)
+    tasks = database.apply_sorting(tasks, sorting_condition)
+    tasks = database.apply_offset(tasks, url_handler.offset)
+    tasks = database.apply_limit(tasks, url_handler.PER_PAGE)
 
     return prepare_tasks(tasks)
 
@@ -73,26 +79,17 @@ def get_choice(choices, choice_key):
 
 
 @app.route('/')
-def root():
-    """
-    Redirect to the index page.
-    :return: redirects to index.
-    """
-    return redirect('/p/1')
-
-
-@app.route('/p/<int:page>')
-def index(page):
+def index():
     """
     Renders index page with initial list of tasks.
     :return: rendered index page.
     """
-    paginator.current_page = page
+    url_handler.handle_request()
     return render_template(
         'index.html',
-        tasks=get_tasks(),
+        tasks=get_tasks(url_handler.get_sorting_condition()),
         form=TaskForm(),
-        pagination=paginator.get_pagination()
+        pagination=url_handler.get_pagination_data()
     )
 
 
@@ -109,7 +106,7 @@ def create_task():
         if form.validate_on_submit():
             database.save_task(form)
 
-            tasks = get_tasks()
+            tasks = get_tasks(url_handler.get_sorting_condition())
 
             data = {
                 'form_is_valid': True,
@@ -120,7 +117,7 @@ def create_task():
                 'pagination_html': render_template(
                     'pagination.html',
                     tasks=tasks,
-                    pagination=paginator.get_pagination()
+                    pagination=url_handler.get_pagination_data()
                 )
             }
         else:
@@ -156,7 +153,7 @@ def update_task():
         if form.validate_on_submit():
             database.edit_task(task_id, form)
 
-            tasks = get_tasks()
+            tasks = get_tasks(url_handler.get_sorting_condition())
 
             data = {
                 'form_is_valid': True,
@@ -167,7 +164,7 @@ def update_task():
                 'pagination_html': render_template(
                     'pagination.html',
                     tasks=tasks,
-                    pagination=paginator.get_pagination()
+                    pagination=url_handler.get_pagination_data()
                 )
             }
         else:
@@ -202,9 +199,9 @@ def remove_task():
     """
     database.delete_task(request.args.get('task'))
 
-    paginator.current_page = 1
+    url_handler.page = 1
 
-    tasks = get_tasks()
+    tasks = get_tasks(url_handler.get_sorting_condition())
 
     data = {
         'tasks_html': render_template(
@@ -214,8 +211,7 @@ def remove_task():
         'pagination_html': render_template(
             'pagination.html',
             tasks=tasks,
-            pagination=paginator.get_pagination()
+            pagination=url_handler.get_pagination_data()
         )
     }
-
     return jsonify(data)

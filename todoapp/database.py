@@ -27,6 +27,16 @@ def get_tasks(**filters):
     return db.task.find(filters) if filters else db.task.find()
 
 
+def apply_sorting(tasks, *conditions):
+    """
+    Sorts list of tasks in ascending or descending order.
+    :param tasks: tasks cursor.
+    :param conditions: sorting conditions.
+    :return: sorted list of tasks.
+    """
+    return tasks.sort(conditions)
+
+
 def apply_offset(tasks, offset):
     """
     Applies offset to the list of tasks.

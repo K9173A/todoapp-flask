@@ -16,18 +16,7 @@
           href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
-  <div class="header">
-    <div class="container">
-      <div class="d-flex justify-content-between">
-        <div class="logo">
-          TODO.APP
-        </div>
-        <button type="button" class="todo-btn btn-create" data-toggle="modal" data-target="#modal-create-task">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-    </div>
-  </div>
+  {% include 'header.html' %}
   <div class="container">
     <div class="pagination-wrapper">
       {% include 'pagination.html' %}

@@ -137,6 +137,21 @@ body {
   background-color: #db0000;
 }
 
+.btn-filter {
+  background-color: #45515d;
+  color: #3c7bd2;
+  transition: all 0.4s;
+}
+.btn-filter:hover {
+  background-color: #637583;
+  color: #3f94f1;
+}
+.btn-filter:focus {
+  background-color: #7a8e9c;
+  color: #3aa6ff;
+  outline: unset;
+}
+
 .priority-not-set { color: #353f4a; }
 .priority-low { color: #53a3f4; }
 .priority-normal { color: #ffd544; }
@@ -164,4 +179,45 @@ body {
 
 .pagination {
   margin-bottom: 0;
+}
+
+.filter-box {
+  border-radius: 4px;
+  background-color: #45515d;
+  color: #ced7e0;
+}
+
+.filter-box-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.filters {
+  padding: 8px;
+  border-bottom: 1px solid #5e6f80;
+}
+
+.filter-box-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #353f4a;
+  color: #3c7bd2;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.4s;
+}
+.filter-box-btn:hover {
+  background-color: #637583;
+  color: #3f94f1;
+}
+.filter-box-btn:focus {
+  background-color: #7a8e9c;
+  color: #3aa6ff;
+  outline: unset;
 }
