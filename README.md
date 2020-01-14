@@ -1,6 +1,8 @@
 # todoapp-flask
 A simple todo app built using Flask and MongoDB.
 
+![example](https://github.com/K9173A/todoapp-flask/blob/master/example.JPG)
+
 ## Components
 * Flask (v1.1.1) - Python framework.
 * Flask-PyMongo (v2.3.0) - adapter which allows to use PyMongo (adapter of MongoDB for Python) in Flask.
